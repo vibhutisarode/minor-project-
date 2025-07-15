@@ -1,0 +1,32 @@
+/* raisoni.css */
+
+/* Reset and base styles */
+body {
+    background-image: url('https://www.google.com/imgres?q=raisoni%20college%20nagpur&imgurl=https%3A%2F%2Femango.s3.amazonaws.com%2Fmedia%2Fcache%2Fe5%2F29%2Fe52948cb3dd2f327f0210f8a7383d8f5.jpg&imgrefurl=https%3A%2F%2Femango.global%2Fcollege%2Fcolleges%2Fg-h-raisoni-institute-information-technology-auton&docid=sOi5q3NVpfje7M&tbnid=2FwOmXW6-GlaFM&vet=12ahUKEwiiveu2uoOJAxVl1zgGHenbOZcQM3oECGMQAA..i&w=850&h=450&hcb=2&ved=2ahUKEwiiveu2uoOJAxVl1zgGHenbOZcQM3oECGMQAA');
+    background-size: cover; /* Makes the image cover the whole background */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Ensures the image does not repeat */
+}
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background-image: url("raisoni image.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}

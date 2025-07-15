@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department of Artificial Intelligence - Student Timetable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .timetable {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+        .timetable th, .timetable td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        .timetable th {
+            background-color: #f2f2f2;
+        }
+        .subject {
+            width: 100%;
+            padding: 5px;
+            background-color: #e0e0e0;
+            border: none;
+        }
+        #notifications {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e6f7ff;
+            border: 1px solid #91d5ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>G H RAISONI COLLEGE OF ENGINEERING & MANAGEMENT</h1>
+            <h2>Department of Artificial Intelligence</h2>
+            <h3>CLASSWISE TIME TABLE</h3>
+            <p>SESSION 2024-25 Odd Semester</p>
+            <p>SEM- III / Section- C</p>
+            <p>Class-Room No.: C-2-15</p>
+        </div>
+        <table class="timetable">
+            <tr>
+                <th>Day/Time</th>
+                <th>12:20-1:15</th>
+                <th>1:15-2:10</th>
+                <th>2:10-2:40</th>
+                <th>2:40-3:35</th>
+                <th>3:35-4:30</th>
+                <th>4:30-4:40</th>
+                <th>4:40-5:35</th>
+                <th>5:35-6:30</th>
+            </tr>
+            <tr>
+                <td>MON</td>
+                <td><span class="subject">DSA (SB)</span></td>
+                <td><span class="subject">OE</span></td>
+                <td rowspan="6">R<br>E<br>C<br>E<br>S<br>S</td>
+                <td><span class="subject">DMGT (SY)</span></td>
+                <td><span class="subject">CA (SL)</span></td>
+                <td rowspan="6">R<br>E<br>C<br>E<br>S<br>S</td>
+                <td colspan="2"><span class="subject">DSA/C1/AM/C-2-02 Minor Project/C2/Guide Minor Project/C3/SL/209</span></td>
+            </tr>
+            <tr>
+                <td>TUE</td>
+                <td><span class="subject">OE</span></td>
+                <td><span class="subject">DSA (SB)</span></td>
+                <td><span class="subject">DMGT (SY)</span></td>
+                <td><span class="subject">Library</span></td>
+                <td colspan="2"><span class="subject">DSA/C2/AM/C-2-06 Minor Project/C1/SL/C-2-05 Minor Project/C3/SS/C-2-09</span></td>
+            </tr>
+            <tr>
+                <td>WED</td>
+                <td><span class="subject">OE</span></td>
+                <td><span class="subject">CA (SL)</span></td>
+                <td><span class="subject">EEIM (IS)</span></td>
+                <td><span class="subject">DSA (SB)</span></td>
+                <td><span class="subject">APTITUTE</span></td>
+                <td><span class="subject">Sports</span></td>
+            </tr>
+            <tr>
+                <td>THU</td>
+                <td><span class="subject">DMGT (SY)</span></td>
+                <td><span class="subject">HE</span></td>
+                <td colspan="2"><span class="subject">Minor Project/C1/Guide DSA/C3/AM/C-2-01</span></td>
+                <td colspan="2"><span class="subject">Minor Project/C3/Guide</span></td>
+            </tr>
+            <tr>
+                <td>FRI</td>
+                <td><span class="subject">EEIM (IS)</span></td>
+                <td><span class="subject">HE</span></td>
+                <td><span class="subject">DMGT (SY)</span></td>
+                <td><span class="subject">OE</span></td>
+                <td colspan="2"><span class="subject">Sports</span></td>
+            </tr>
+            <tr>
+                <td>SAT</td>
+                <td colspan="2"><span class="subject">FORUM ACTIVITY</span></td>
+                <td colspan="2"><span class="subject">IEEE ACTIVITY</span></td>
+                <td colspan="2"></td>
+            </tr>
+        </table>
+        <div id="notifications">
+            <h3>Notifications:</h3>
+            <ul id="notificationList"></ul>
+        </div>
+    </div>
+
+    <script>
+        function loadData() {
+            const savedData = localStorage.getItem('timetableData');
+            if (savedData) {
+                const timetableData = JSON.parse(savedData);
+                const subjectSpans = document.querySelectorAll('.subject');
+                let spanIndex = 0;
+                timetableData.forEach((dayData) => {
+                    dayData.forEach((subject) => {
+                        if (subjectSpans[spanIndex]) {
+                            subjectSpans[spanIndex].textContent = subject;
+                            spanIndex++;
+                        }
+                    });
+                });
+            }
+        }
+
+        function loadNotifications() {
+            const savedNotifications = localStorage.getItem('notifications');
+            if (savedNotifications) {
+                const notifications = JSON.parse(savedNotifications);
+                const notificationList = document.getElementById('notificationList');
+                notificationList.innerHTML = ''; // Clear existing notifications
+                notifications.forEach(notification => {
+                    const li = document.createElement('li');
+                    li.textContent = notification;
+                    notificationList.appendChild(li);
+                });
+            }
+        }
+
+        // Load saved data and notifications on page load
+        loadData();
+        loadNotifications();
+
+        // Check for updates every 30 seconds
+        setInterval(() => {
+            loadData();
+            loadNotifications();
+        }, 30000);
+    </script>
+</body>
+</html>

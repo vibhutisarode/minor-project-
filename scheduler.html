@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Department Timetable Viewer</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #2b2b2b;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+        h1, h2, h3 {
+            color: #ffffff;
+            text-align: center;
+        }
+        h1 {
+            border-bottom: 2px solid #ffffff;
+            padding-bottom: 10px;
+        }
+        .department-section {
+            margin: 30px 0;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .button-container button {
+            padding: 10px 20px;
+            background-color: #ffffff;
+            color: #1e1e1e;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .button-container button:hover {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+        }
+        .timetable-viewer {
+            display: none;
+            margin-top: 30px;
+        }
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            background-color: #ffffff;
+        }
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 20px;
+            color: #a0a0a0;
+        }
+        .footer a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Department Timetable Viewer</h1>
+
+        <!-- AI Department -->
+        <div class="department-section">
+            <h2>Artificial Intelligence Department A</h2>
+            <div class="button-container">
+                <button onclick="showTimetable('ai', 'scheduler')">Scheduler Time Table</button>
+                <button onclick="showTimetable('ai', 'semester')">Semester Time Table</button>
+                <button onclick="showTimetable('ai', 'exam')">Exam Time Table</button>
+            </div>
+        </div>
+
+        <!-- AI & Data Science Department -->
+        <div class="department-section">
+            <h2>Artificial Intelligence Department B</h2>
+            <div class="button-container">
+                <button onclick="showTimetable('ai-ds', 'scheduler')">Scheduler Time Table</button>
+                <button onclick="showTimetable('ai-ds', 'semester')">Semester Time Table</button>
+                <button onclick="showTimetable('ai-ds', 'exam')">Exam Time Table</button>
+            </div>
+        </div>
+
+        <!-- AI & Machine Learning Department -->
+        <div class="department-section">
+            <h2>Artificial Intelligence Department C</h2>
+            <div class="button-container">
+                <button onclick="showTimetable('ai-ml', 'scheduler')">Scheduler Time Table</button>
+                <button onclick="showTimetable('ai-ml', 'semester')">Semester Time Table</button>
+                <button onclick="showTimetable('ai-ml', 'exam')">Exam Time Table</button>
+            </div>
+        </div>
+
+        <!-- Timetable Viewer Section -->
+        <div class="timetable-viewer" id="timetableViewer">
+            <h3 id="timetableTitle"></h3>
+            <iframe id="timetableFrame" src=""></iframe>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2024 Raisoni Group | <a href="mailto:info@raisonigroup.com">info@raisonigroup.com</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Function to show the timetable based on the department and type of timetable
+        function showTimetable(department, type) {
+            var timetableViewer = document.getElementById('timetableViewer');
+            var timetableTitle = document.getElementById('timetableTitle');
+            var timetableFrame = document.getElementById('timetableFrame');
+
+            // Mapping of titles
+            var titles = {
+                'ai': 'Artificial Intelligence Department',
+                'ai-ds': 'AI & Data Science Department',
+                'ai-ml': 'AI & Machine Learning Department'
+            };
+
+            // Mapping of timetable types
+            var types = {
+                'scheduler': 'Scheduler Time Table',
+                'semester': 'Semester Time Table',
+                'exam': 'Exam Time Table'
+            };
+
+            // Construct title
+            timetableTitle.innerText = titles[department] + ' - ' + types[type];
+
+            // Example links for iframes, can be replaced with actual timetable URLs
+            var links = {
+                'ai': {
+                    'scheduler': '///C:/Users/SANKALP%20NERKAR/AppData/Local/Microsoft/Windows/INetCache/IE/8W1VGKU8/Classwise_Time_Table_3C[1].pdf',
+                    'semester': 'timetables/ai-semester.html',
+                    'exam': 'timetables/ai-exam.html'
+                },
+                'ai-ds': {
+                    'scheduler': 'timetables/ai-ds-scheduler.html',
+                    'semester': 'timetables/ai-ds-semester.html',
+                    'exam': 'timetables/ai-ds-exam.html'
+                },
+                'ai-ml': {
+                    'scheduler': 'timetables/ai-ml-scheduler.html',
+                    'semester': 'timetables/ai-ml-semester.html',
+                    'exam': 'timetables/ai-ml-exam.html'
+                }
+            };
+
+            // Update the iframe with the selected timetable
+            timetableFrame.src = links[department][type];
+
+            // Show the timetable viewer section
+            timetableViewer.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G H Raisoni College of Engineering</title>
+    <link rel="stylesheet" href="raisoni.css">                                         <!-- Moved link tag to head -->
+    <style>
+        style {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Header and Navigation */
+header {
+    background-color: #003366;
+    padding: 1rem 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ffd700;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Features Section */
+.features {
+    padding: 4rem 2rem;
+    background-color: #f4f4f4;
+}
+
+.features h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #003366;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.feature-item {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+}
+
+.feature-item i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #003366;
+}
+
+.feature-item h3 {
+    margin-bottom: 0.5rem;
+    color: #003366;
+}
+
+/* Footer */
+footer {
+    background-color: #003366;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 0.5rem 0;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+}
+        /* Your styles here */
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html" id="HOMEBtn">Home</a></li>
+                <li><a href="admin.html" id="AdminBtn">Admin</a></li>
+                <li><a href="teachers.html" id="TeachersBtn">Teachers</a></li>
+                <li><a href="student.html" id="studentsBtn">Students</a></li>
+                <li><a href="scheduler.html" id="schedulerBtn">Scheduler</a></li>
+                <li><a href="contact.html" id="contactBtn">Contact</a></li>
+                <li><a href="signup.html" id="signupBtn">SignUp</a></li>
+                <li><a href="login.html" id="loginBtn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>GHRCEMN</h1>
+                <p>Empowering Minds, Transforming Futures</p>
+                <img src="raisoni image.jpg" alt="GHRCEMN Campus" class="hero-image">
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <h2>Why Choose GHRCE?</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <i>📚</i>
+                    <h3>Modern Curriculum</h3>
+                    <p>Stay ahead with our industry-aligned courses</p>
+                </div>
+                <div class="feature-item">
+                    <i>👨‍🏫</i>
+                    <h3>Expert Faculty</h3>
+                    <p>Learn from experienced educators and industry professionals</p>
+                </div>
+                <div class="feature-item">
+                    <i>🔬</i>
+                    <h3>Research Opportunities</h3>
+                    <p>Engage in cutting-edge research projects</p>
+                </div>
+                <div class="feature-item">
+                    <i>🌐</i>
+                    <h3>Global Partnerships</h3>
+                    <p>Benefit from our international collaborations</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 G H Raisoni College of Engineering and Manegment,Nagpur. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Add smooth scrolling to nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', function() {
+            const parallax = document.querySelector('.hero-image');
+            let scrollPosition = window.pageYOffset;
+            parallax.style.transform = 'translateY(' + scrollPosition * 0.5 + 'px)';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department of Artificial Intelligence - Timetable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .timetable {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+        .timetable th, .timetable td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        .timetable th {
+            background-color: #f2f2f2;
+        }
+        .subject-btn {
+            width: 100%;
+            padding: 5px;
+            background-color: #e0e0e0;
+            border: none;
+            cursor: pointer;
+        }
+        .subject-btn:hover {
+            background-color: #d0d0d0;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: black;
+        }
+        #notifications {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e6f7ff;
+            border: 1px solid #91d5ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>G H RAISONI COLLEGE OF ENGINEERING & MANAGEMENT</h1>
+            <h2>Department of Artificial Intelligence</h2>
+            <h3>CLASSWISE TIME TABLE</h3>
+            <p>SESSION 2024-25 Odd Semester</p>
+            <p>SEM- III / Section- C</p>
+            <p>Class-Room No.: C-2-15</p>
+        </div>
+        <table class="timetable">
+            <tr>
+                <th>Day/Time</th>
+                <th>12:20-1:15</th>
+                <th>1:15-2:10</th>
+                <th>2:10-2:40</th>
+                <th>2:40-3:35</th>
+                <th>3:35-4:30</th>
+                <th>4:30-4:40</th>
+                <th>4:40-5:35</th>
+                <th>5:35-6:30</th>
+            </tr>
+            <tr>
+                <td>MON</td>
+                <td><button class="subject-btn" onclick="editSubject(this)">DSA (SB)</button></td>
+                <td><button class="subject-btn" onclick="editSubject(this)">OE</button></td>
+                <td rowspan="6">R<br>E<br>C<br>E<br>S<br>S</td>
+                <td><button class="subject-btn" onclick="editSubject(this)">DMGT (SY)</button></td>
+                <td><button class="subject-btn" onclick="editSubject(this)">CA (SL)</button></td>
+                <td rowspan="6">R<br>E<br>C<br>E<br>S<br>S</td>
+                <td colspan="2"><button class="subject-btn" onclick="editSubject(this)">DSA/C1/AM/C-2-02 Minor Project/C2/Guide Minor Project/C3/SL/209</button></td>
+            </tr>
+            <tr>
+                <td>TUE</td>
+                <td><button class="subject-btn" onclick="editSubject(this)">OE</button></td>
+                <td><button class="subject-btn" onclick="editSubject(this)">DSA (SB)</button></td>
+                <td><button class="subject-btn" onclick="editSubject(this)">DMGT (SY)</button></td>
+                <td><button class="subject-btn" onclick="editSubject(this)">Library</button></td>
+                <td colspan="2"><button class="subject-btn" onclick="editSubject(this)">DSA/C2/AM/C-2-06 Minor Project/C1/SL/C-2-05 Minor Project/C3/SS/C-2-09</button></td>
+            </tr>
+            <tr>
+                <td>WED</td>
+                <td><button class="subject-btn" onclick="editSubject(this)">OE</button></td>
+                <td><button class="subject-btn" onclick="editSubject(this)">CA (SL)</button></td>
+                <td><button class="subject-btn" onclick="editSubject(this)">EEIM (IS)</button></td>
+                <td><button class="subject-btn" onclick="editSubject(this)">DSA (SB)</button></td>
+                <td><button class="subject-btn" onclick="editSubject(this)">APTITUTE</button></td>
+                <td><button class="subject-btn" onclick="editSubject(this)">Sports</button></td>
+            </tr>
+            <tr>
+                <td>THU</td>
+                <td><button class="subject-btn" onclick="editSubject(this)">DMGT (SY)</button></td>
+                <td><button class="subject-btn" onclick="editSubject(this)">HE</button></td>
+                <td colspan="2"><button class="subject-btn" onclick="editSubject(this)">Minor Project/C1/Guide DSA/C3/AM/C-2-01</button></td>
+                <td colspan="2"><button class="subject-btn" onclick="editSubject(this)">Minor Project/C3/Guide</button></td>
+            </tr>
+            <tr>
+                <td>FRI</td>
+                <td><button class="subject-btn" onclick="editSubject(this)">EEIM (IS)</button></td>
+                <td><button class="subject-btn" onclick="editSubject(this)">HE</button></td>
+                <td><button class="subject-btn" onclick="editSubject(this)">DMGT (SY)</button></td>
+                <td><button class="subject-btn" onclick="editSubject(this)">OE</button></td>
+                <td colspan="2"><button class="subject-btn" onclick="editSubject(this)">Sports</button></td>
+            </tr>
+            <tr>
+                <td>SAT</td>
+                <td colspan="2"><button class="subject-btn" onclick="editSubject(this)">FORUM ACTIVITY</button></td>
+                <td colspan="2"><button class="subject-btn" onclick="editSubject(this)">IEEE ACTIVITY</button></td>
+                <td colspan="2"></td>
+            </tr>
+        </table>
+        <div id="notifications">
+            <h3>Notifications:</h3>
+            <ul id="notificationList"></ul>
+        </div>
+    </div>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Subject</h2>
+            <input type="text" id="subjectInput">
+            <button onclick="saveSubject()">Save</button>
+        </div>
+    </div>
+
+    <script>
+        
+        function editSubject(element) {
+            currentSubject = element;
+            editModal.style.display = "block";
+            subjectInput.value = element.textContent;
+        }
+
+        function saveSubject() {
+            const oldSubject = currentSubject.textContent;
+            const newSubject = subjectInput.value;
+            currentSubject.textContent = newSubject;
+            editModal.style.display = "none";
+            addNotification(`Changed "${oldSubject}" to "${newSubject}"`);
+            saveData();
+        }
+
+        function addNotification(message) {
+            const li = document.createElement("li");
+            li.textContent = message;
+            notificationList.appendChild(li);
+        }
+
+        function saveData() {
+            const timetableData = [];
+            const rows = document.querySelectorAll('.timetable tr');
+            rows.forEach((row, rowIndex) => {
+                if (rowIndex === 0) return; // Skip header row
+                const dayData = [];
+                row.querySelectorAll('.subject-btn').forEach(btn => {
+                    dayData.push(btn.textContent);
+                });
+                timetableData.push(dayData);
+            });
+            localStorage.setItem('timetableData', JSON.stringify(timetableData));
+        }
+
+        function loadData() {
+            const savedData = localStorage.getItem('timetableData');
+            if (savedData) {
+                const timetableData = JSON.parse(savedData);
+                const rows = document.querySelectorAll('.timetable tr');
+                timetableData.forEach((dayData, rowIndex) => {
+                    const row = rows[rowIndex + 1]; // Skip header row
+                    dayData.forEach((subject, cellIndex) => {
+                        const btn = row.querySelectorAll('.subject-btn')[cellIndex];
+                        if (btn) btn.textContent = subject;
+                    });
+                });
+            }
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target == editModal) {
+                editModal.style.display = "none";
+            }
+        }
+
+        // Load saved data on page load
+        loadData();
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department of Artificial Intelligence - Timetable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .timetable {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+        .timetable th, .timetable td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        .timetable th {
+            background-color: #f2f2f2;
+        }
+        .subject-btn {
+            width: 100%;
+            padding: 5px;
+            background-color: #e0e0e0;
+            border: none;
+            cursor: pointer;
+        }
+        .subject-btn:hover {
+            background-color: #d0d0d0;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: black;
+        }
+        #notifications {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e6f7ff;
+            border: 1px solid #91d5ff;
+        }
+    </style>
+</head>
+<body>
+    
+        
+        </div>
+    </div>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Subject</h2>
+            <input type="text" id="subjectInput">
+            <button onclick="saveSubject()">Save</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSubject;
+        const editModal = document.getElementById("editModal");
+        const subjectInput = document.getElementById("subjectInput");
+        const notificationList = document.getElementById("notificationList");
+
+        function editSubject(element) {
+            currentSubject = element;
+            editModal.style.display = "block";
+            subjectInput.value = element.textContent;
+        }
+
+        function getDayAndTime(element) {
+            const row = element.closest('tr');
+            const dayCell = row.cells[0];
+            const day = dayCell.textContent;
+            
+            const cellIndex = Array.from(row.cells).indexOf(element.parentElement);
+            const headerRow = document.querySelector('.timetable tr');
+            const time = headerRow.cells[cellIndex].textContent;
+            
+            return { day, time };
+        }
+
+        function saveSubject() {
+            const oldSubject = currentSubject.textContent;
+            const newSubject = subjectInput.value;
+            const { day, time } = getDayAndTime(currentSubject);
+            currentSubject.textContent = newSubject;
+            editModal.style.display = "none";
+            addNotification(`Changed "${oldSubject}" to "${newSubject}" on ${day} at ${time}`);
+            saveData();
+            loadData();
+        }
+
+        function addNotification(message) {
+            const li = document.createElement("li");
+            li.textContent = message;
+            notificationList.appendChild(li);
+        }
+
+        function saveData() {
+            const timetableData = [];
+            const rows = document.querySelectorAll('.timetable tr');
+            rows.forEach((row, rowIndex) => {
+                if (rowIndex === 0) return; // Skip header row
+                const dayData = [];
+                row.querySelectorAll('.subject-btn').forEach(btn => {
+                    dayData.push(btn.textContent);
+                });
+                timetableData.push(dayData);
+            });
+            localStorage.setItem('timetableData', JSON.stringify(timetableData));
+        }
+
+        function loadData() {
+            const savedData = localStorage.getItem('timetableData');
+            if (savedData) {
+                const timetableData = JSON.parse(savedData);
+                const rows = document.querySelectorAll('.timetable tr');
+                timetableData.forEach((dayData, rowIndex) => {
+                    const row = rows[rowIndex + 1]; // Skip header row
+                    dayData.forEach((subject, cellIndex) => {
+                        const btn = row.querySelectorAll('.subject-btn')[cellIndex];
+                        if (btn) btn.textContent = subject;
+                    });
+                });
+            }
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target == editModal) {
+                editModal.style.display = "none";
+            }
+        }
+
+        // Load saved data on page load
+        loadData();
+    </script>
+</body>
+</html>

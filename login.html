@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Scheduler - Login</title>
+    <!-- ... existing head content ... -->
+    <title>Student Scheduler - Login</title>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+  
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #1a1a1a;
+          color: #ffffff;
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+        }
+  
+        header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 20px;
+          width: 95%;
+          /* background-color: red; */
+          margin: 0 auto;
+        }
+  
+        h1 {
+          font-size: 24px;
+          margin: 0;
+        }
+  
+        .sign-up-link {
+          color: #ffffff;
+          text-decoration: none;
+        }
+  
+        main {
+          flex-grow: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+  
+        .container {
+          display: flex;
+          background-color: #242424;
+          border-radius: 10px;
+          overflow: hidden;
+          width: 95%;
+          /* max-width: 1000px; */
+        }
+  
+        .left-panel,
+        .right-panel {
+          padding: 40px;
+          width: 50%;
+        }
+  
+        .left-panel {
+          background-color: #2a2a2a;
+        }
+  
+        h2 {
+          font-size: 28px;
+          margin-bottom: 10px;
+          text-align: center;
+        }
+  
+        p {
+          color: #b0b0b0;
+          margin-bottom: 20px;
+          text-align: center;
+        }
+  
+        .image-container {
+          background-color: #ffffff;
+          border-radius: 50%;
+          width: 320px;
+          height: 320px;
+          margin: 20px auto;
+        }
+  
+        .image-container img {
+          width: 100%;
+          height: 100%;
+          border-radius: 10px;
+          object-fit: cover;
+        }
+  
+        form {
+          display: flex;
+          flex-direction: column;
+        }
+  
+        input {
+          margin-bottom: 15px;
+          padding: 12px;
+          border: none;
+          background-color: #333333;
+          color: white;
+          border-radius: 5px;
+        }
+  
+        button {
+          padding: 12px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-weight: bold;
+        }
+  
+        button[type="submit"] {
+          background-color: #4caf50;
+          color: white;
+        }
+  
+        .right-panel #para {
+          margin-top: 15px;
+        }
+  
+        .social-login {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 20px;
+        }
+  
+        .social-login button {
+          width: 48%;
+          color: white;
+        }
+  
+        .forgot-password {
+          text-align: center;
+          margin-top: 20px;
+        }
+  
+        .forgot-password a {
+          color: #4caf50;
+          text-decoration: none;
+        }
+  
+        .login-button,
+        .signup-button {
+          display: block;
+          width: 100%;
+          padding: 12px;
+          border: none;
+          border-radius: 5px;
+          background-color: #4caf50;
+          color: white;
+          text-align: center;
+          text-decoration: none;
+          font-weight: bold;
+          cursor: pointer;
+        }
+  
+        .login-button:hover,
+        .signup-button:hover {
+          background-color: #45a049;
+        }
+  
+        @media (max-width: 768px) {
+          .container {
+            flex-direction: column;
+            width: 95%;
+          }
+  
+          .left-panel,
+          .right-panel {
+            width: auto;
+          }
+        }
+      </style>
+    <!-- ... existing styles ... -->
+  </head>
+  <body>
+    <header>
+      <h1>Student Scheduler</h1>
+      <a href="signup.html" class="sign-up-link">New here? Sign up now.</a>
+    </header>
+    <main>
+      <div class="container">
+        <section class="left-panel">
+          <h2>Welcome back</h2>
+          <p>Access your personalized schedule</p>
+          <div class="image-container">
+            <img
+              src="https://img.freepik.com/free-vector/business-man-working-hard-stock-financial-trade-market-diagram-vector-illustration-flat-design_1150-39773.jpg?w=740&t=st=1722006908~exp=1722007508~hmac=8baec2165ddb0b3be8fa30113d01b96b23b595eb5ee1e0a6439e2ee90f862771"
+              alt=""
+              srcset=""
+            />
+          </div>
+          <p>Effortlessly manage your schedule online.</p>
+        </section>
+        <section class="right-panel">
+          <h2>Log in</h2>
+          <p>Enter your credentials to access your account.</p>
+          <form id="login-form">
+            <input type="text" id="enrollmentNumber" placeholder="Enrollment Number" required />
+            <input type="password" id="password" placeholder="Enter password" required />
+            <button type="submit">Log in</button>
+          </form>
+          <p id="para">Don't have an account?</p>
+          <div class="social-login">
+            <a href="signup.html" class="signup-button">Sign up</a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      const loginForm = document.getElementById('login-form');
+
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Get form values
+        const enrollmentNumber = document.getElementById('enrollmentNumber').value.trim();
+        const password = document.getElementById('password').value;
+
+        // Prepare data
+        const data = { enrollmentNumber, password };
+
+        try {
+          const response = await fetch('http://localhost:5000/api/auth/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+                                                                                      // Save token to localStorage
+            localStorage.setItem('token', result.token);
+                                                                                     // Redirect to dashboard or home page
+            window.location.href = 'dashboard.html';                                 // Create this page as needed
+          } else {
+            alert(result.msg || 'Login failed');
+          }
+
+        } catch (error) {
+          console.error('Error:', error);
+          alert('An error occurred during login');
+        }
+      }
+    );
+    </script>
+  </body>
+</html>

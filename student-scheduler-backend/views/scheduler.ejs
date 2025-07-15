@@ -1,0 +1,12 @@
+<h2>Your Curriculum Schedule</h2>
+<ul>
+    <% schedules.forEach(schedule => { %>
+        <li><%= schedule.curriculum %> - <%= schedule.time_slot %></li>
+    <% }); %>
+</ul>
+
+<form action="/scheduler/add" method="post">
+    <input type="text" name="curriculum" placeholder="Curriculum Name" required>
+    <input type="text" name="time_slot" placeholder="Time Slot" required>
+    <button type="submit">Add Schedule</button>
+</form>
